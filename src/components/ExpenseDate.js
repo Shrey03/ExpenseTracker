@@ -10,5 +10,4 @@ function ExpenseDate(props) {
     </div>
   );
 }
-
 export default ExpenseDate;
