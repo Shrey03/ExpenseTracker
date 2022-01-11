@@ -4,7 +4,7 @@ import ExpensesFilter from "./ExpensesFilter";
 import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 const Expenses = (props) => {
-  const [filteredYear, setFilteredYear] = useState("2020");
+  const [filteredYear, setFilteredYear] = useState("2022");
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
@@ -15,7 +15,16 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         ></ExpensesFilter>
-        <ExpenseItem
+        {/* THIS METHOD CREATES ALL THE EXPENSE ITEMS DYNAMICALLY BY MAP() , TAKING AN ARRAY EXPENSE FROM PARENT COMPONENT APP.JS , using ITEMS */}
+        {props.items.map((expense) => (
+          <ExpenseItem
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+          />
+        ))}
+        {/* THIS WORKS SAME AS ABOVE METHOD < IT IS JUST THAT IT'S HARDCODED, IN THIS WE ARE ADDING MANUALLY ALL THE ITEMS ONE by ONE WHICH IS NOT THE GOOD APPROACH, THIS IS STATIC */}
+        {/* <ExpenseItem
           title={props.items[0].title}
           amount={props.items[0].amount}
           date={props.items[0].date}
@@ -34,7 +43,7 @@ const Expenses = (props) => {
           title={props.items[3].title}
           amount={props.items[3].amount}
           date={props.items[3].date}
-        ></ExpenseItem>
+        ></ExpenseItem> */}
       </Card>
     </div>
   );
